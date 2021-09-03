@@ -149,7 +149,7 @@ class RenderToDoList {
             $input.value = '';
             setTimeout(() => {
                 this.initializeShowStatistic();
-            }, 100);
+            }, 400);
         });
     }
 
