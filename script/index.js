@@ -78,7 +78,7 @@ class TodoModel {
         this.getAllNotes();
     }
 
-    async setAsComplite(id) {
+    async toggle(id) {
         const headers = new Headers();
 
         headers.set('Content-Type', 'application/json;charset=utf-8');
@@ -89,11 +89,17 @@ class TodoModel {
             headers,
             body: JSON.stringify(this.repository),
         });
+        this.repository.forEach(item => {
+            if (item._id === id && item.checked === true) {
+                item.checked = false;
+            } else if (item._id === id && item.checked === false) {
+                item.checked = true;
+            }
+        });
     }
 
     getStatistic() {
-        const doneNotice = this.repository.filter(item => item.isDone === true);
-
+        const doneNotice = this.repository.filter(item => item.checked === true);
         return {
             totalNotice: this.repository.length,
             doneNotice: doneNotice.length,
@@ -163,7 +169,7 @@ class RenderToDoList {
             const $input = document.createElement('input');
             $input.className = `check${$li.dataset.id}`;
             $input.setAttribute('type', 'checkbox');
-            if (item.isDone === true) {
+            if (item.checked === true) {
                 $input.setAttribute('checked', 'true');
             }
 
@@ -196,9 +202,11 @@ class RenderToDoList {
                     }
                     break;
                 case `check${li.dataset.id}`:
-                    // this.model.setAsDoneNotice(+li.getAttribute('data-id'));
-                    this.initializeShowStatistic();
-                    this.initializeShowingList();
+                    this.model.toggle(+li.getAttribute('data-id'));
+                    setTimeout(() => {
+                        this.initializeShowStatistic();
+                        this.initializeShowingList();
+                    }, 400);
                     break;
                 case `text${li.dataset.id}`:
                     $input.value = '';
