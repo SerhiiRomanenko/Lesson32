@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>toDo</title>
+        <link rel="stylesheet" href="./style/style.css" />
+    </head>
+    <body>
+        <div class="todo__statistic"></div>
+        <div class="popup__bg active">
+            <form class="popup active">
+                <label>
+                    <input class="login" type="text" name="name" required />
+                    <div class="label__text">Введите логин</div>
+                </label>
+                <label>
+                    <input class="password" type="password" name="password" required />
+                    <div class="label__text">Введите пароль</div>
+                </label>
+                <button class="form__button" type="submit">Войти</button>
+            </form>
+        </div>
+
+        <h1 class="title">toDo List:</h1>
+        <form class="todo-form">
+            <input class="todo__text" type="text" name="text" placeholder="Enter notice" required />
+            <button class="todo__addTask">Добавить</button>
+        </form>
+        <ul class="todo__list"></ul>
+
+        <script src="./script/index.js"></script>
+    </body>
+</html>
