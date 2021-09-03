@@ -78,21 +78,18 @@ class TodoModel {
         this.getAllNotes();
     }
 
-    // async getById(id) {
-    //     const headers = new Headers();
+    async setAsComplite(id) {
+        const headers = new Headers();
 
-    //     headers.set('Content-Type', 'application/json;charset=utf-8');
-    //     headers.set('Authorization', `Bearer ${this.token}`);
+        headers.set('Content-Type', 'application/json;charset=utf-8');
+        headers.set('Authorization', `Bearer ${this.token}`);
 
-    //     const response = await fetch(`${this.baseUrl}/todo/${id}`, {
-    //         method: 'GET',
-    //         headers,
-    //         body: JSON.stringify(),
-    //     });
-
-    //     const result = await response.json();
-    //     this.getAllNotes();
-    // }
+        await fetch(`${this.baseUrl}/todo/${id}/toggle`, {
+            method: 'PUT',
+            headers,
+            body: JSON.stringify(this.repository),
+        });
+    }
 
     getStatistic() {
         const doneNotice = this.repository.filter(item => item.isDone === true);
@@ -199,7 +196,7 @@ class RenderToDoList {
                     }
                     break;
                 case `check${li.dataset.id}`:
-                    this.model.setAsDoneNotice(+li.getAttribute('data-id'));
+                    // this.model.setAsDoneNotice(+li.getAttribute('data-id'));
                     this.initializeShowStatistic();
                     this.initializeShowingList();
                     break;
