@@ -200,11 +200,10 @@ class RenderToDoList {
                     }
                     break;
                 case `check${li.dataset.id}`:
-                    this.model.toggle(+li.getAttribute('data-id'));
-                    setTimeout(() => {
+                    this.model.toggle(+li.getAttribute('data-id')).then(() => {
                         this.initializeShowStatistic();
                         this.initializeShowingList();
-                    }, 400);
+                    });
                     break;
                 case `text${li.dataset.id}`:
                     $input.value = '';
