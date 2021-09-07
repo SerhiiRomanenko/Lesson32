@@ -149,8 +149,8 @@ class RenderToDoList {
                     this.initializeShowingList();
                     this.initializeShowStatistic();
                 }, 500);
+                $input.value = '';
             }
-            $input.value = '';
         });
     }
 
