@@ -129,10 +129,10 @@ class RenderToDoList {
             if (this.loginField.value.trim() === '' || this.passwordField.value.trim() === '') {
                 alert('Не верно введен логин или пароль');
             } else {
-                this.model.auth();
-                setTimeout(() => {
-                    this.initializeShowingList();
-                }, 500);
+                this.model
+                    .auth()
+                    .then(() => this.model.getAllNotes())
+                    .then(() => this.initializeShowingList());
             }
         });
     }
@@ -147,12 +147,10 @@ class RenderToDoList {
                 this.model.addNote($input.value);
                 setTimeout(() => {
                     this.initializeShowingList();
+                    this.initializeShowStatistic();
                 }, 500);
             }
             $input.value = '';
-            setTimeout(() => {
-                this.initializeShowStatistic();
-            }, 400);
         });
     }
 
