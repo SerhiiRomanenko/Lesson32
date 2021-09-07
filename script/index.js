@@ -179,9 +179,7 @@ class RenderToDoList {
         });
         this.list.innerHTML = '';
         this.list.appendChild(fragment);
-        setTimeout(() => {
-            this.initializeShowStatistic();
-        }, 400);
+        this.initializeShowStatistic();
     }
 
     initializeRemovingNotice() {
